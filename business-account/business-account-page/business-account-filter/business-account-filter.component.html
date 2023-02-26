@@ -1,0 +1,60 @@
+<ng-container *localize="let t" >
+    <form [formGroup]="form" (ngSubmit)="onFormSubmit()" class="table-form__main-container">
+        <div class="flex flex-column">
+            <div class="table-form-field important-fields-container">
+                <div class="span-2 form-input-field">
+					<label for="date">{{t('dateRange')}}</label>
+					<date-range inputId="date" [startControl]="form.controls.start_date" [endControl]="form.controls.end_date"></date-range>
+					<form-error class="form-error-message" [showErrors]="showErrors" [control]="form.controls.start_date"></form-error>
+				</div>
+				<div class="form-input-field">
+					<label for="name">{{t('name')}}</label>
+					<input id="name" pInputText formControlName="name">
+				</div>
+				<div class="form-input-field">
+					<label for="account_number">{{t('accountNumber')}}</label>
+					<input id="account_number" pInputText formControlName="account_number">
+				</div>
+				<div class="form-input-field">
+					<label for="kyc_level">{{t('kycLevel')}}</label>
+					<p-dropdown inputId="kyc_level"
+                        [options]="('KycLevelStatus' | getEnumOptions | translateEnumOptions$ | async) || []"
+                        [showClear]="true" optionLabel="label" optionValue="value" formControlName="kyc_level"
+                        [placeholder]="t('kycLevelPlaceholder')">
+                    </p-dropdown>
+					<form-error class="form-error-message" [showErrors]="showErrors" [control]="form.controls.kyc_level"></form-error>
+				</div>
+				<div class="form-input-field">
+					<label for="email">{{t('email')}}</label>
+					<input id="email" pInputText formControlName="email">
+					<form-error class="form-error-message" [showErrors]="showErrors" [control]="form.controls.email"></form-error>
+				</div>
+				<div class="form-input-field">
+					<label for="access_status_id">{{t('accessLevelStatus')}}</label>
+					<p-dropdown inputId="access_status_id"
+                        [options]="('AccessLevelStatus' | getEnumOptions | translateEnumOptions$ | async) || []"
+                        [showClear]="true" optionLabel="label" optionValue="value" formControlName="access_status_id"
+                        [placeholder]="t('accessLevelStatusPlaceholder')">
+                    </p-dropdown>
+					<form-error class="form-error-message" [showErrors]="showErrors" [control]="form.controls.access_status_id"></form-error>
+				</div>
+				<div class="form-input-field">
+					<label for="country_code">{{t('countryCode')}}</label>
+					<input id="country_code" pInputText formControlName="country_code">
+				</div>
+				<div class="form-input-field">
+					<label for="phone_number">{{t('phoneNumber')}}</label>
+					<input id="phone_number" pInputText formControlName="phone_number">
+					<form-error class="form-error-message" [showErrors]="showErrors" [control]="form.controls.phone_number"></form-error>
+				</div>
+                <div class="form-field__form-buttons-container in-form">
+                    <button pButton type="reset" (click)="onFilterFormClear()" icon="pi pi-trash"
+                        class="p-button-raised p-button-outlined p-button-danger"></button>
+                    <button pButton type="submit" class="p-button-raised p-button-outlined"
+                        icon="pi pi-search" [label]="t('search')"
+                        [loading]="(ts.loading$ | async)!"></button>
+                </div>
+            </div>
+        </div>
+    </form>
+</ng-container>

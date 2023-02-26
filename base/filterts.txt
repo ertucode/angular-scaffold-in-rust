@@ -1,0 +1,48 @@
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { TranslatedFormControl } from '@app/core/forms/translated-form-control';
+import { TableFilterService } from '@app/shared/services/table/table-filter.service';
+import { TableStreamService } from '@app/shared/services/table/table-stream.service';
+import { TranslatedValidators } from '@app/core/localization/forms/translated-validators';
+import { {{ModuleName}}Service } from '../../{{module-name}}.service';
+import { {{ModuleName}}ListModel } from '../../models/list.model';
+import { TranslatedFormGroupFromObject } from '@app/core/forms/helper-types';
+import { {{ModuleName}}ListFilterModel } from '../../models/filter.model';
+
+@Component({
+  selector: '{{module-name}}-filter',
+  templateUrl: './{{module-name}}-filter.component.html',
+  styleUrls: ['./{{module-name}}-filter.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class {{ModuleName}}FilterComponent {
+  form = new FormGroup({
+    {{FormFields}}
+  } satisfies TranslatedFormGroupFromObject<{{ModuleName}}ListFilterModel>)
+
+  showErrors = false
+
+  constructor(
+    private svc: {{ModuleName}}Service,
+    public ts: TableStreamService<{{ModuleName}}ListModel>,
+    public fs: TableFilterService<{{ModuleName}}ListModel, {{ModuleName}}ListFilterModel>,
+  ) {
+
+    {{Constructor}}
+
+    this.fs.initializeService(this.svc.getList)
+  }
+
+  onFormClear() {
+    this.form.reset()
+  }
+
+  onFormSubmit() {
+    if (this.form.valid) {
+      this.fs.onFilterFormSubmit(this.form.value)
+      this.showErrors = false
+    } else {
+      this.showErrors = true
+    }
+  }
+}

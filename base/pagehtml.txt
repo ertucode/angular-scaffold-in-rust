@@ -1,0 +1,15 @@
+<ng-container *localize="let t">
+    <div class="card">
+        <div class="page-header">
+            <h1>{{t('listName')}}</h1>
+            <div class="right-button-container">
+                
+            </div>
+        </div>
+        <div [blockUi]="!(loadClaim | hasClaim | async)">
+            <{{module-name}}-filter></{{module-name}}-filter>
+            <{{module-name}}-list></{{module-name}}-list>
+        </div>
+
+    </div>
+</ng-container>

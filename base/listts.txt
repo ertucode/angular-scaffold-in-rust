@@ -1,0 +1,17 @@
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { TableStreamService } from '@app/shared/services/table/table-stream.service';
+import { {{ModuleName}}ListModel } from '../../models/list.model';
+
+@Component({
+  selector: '{{module-name}}-list',
+  templateUrl: './{{module-name}}-list.component.html',
+  styleUrls: ['./{{module-name}}-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class {{ModuleName}}ListComponent {
+  constructor(
+    public ts: TableStreamService<{{ModuleName}}ListModel>,
+  ) { }
+
+
+}

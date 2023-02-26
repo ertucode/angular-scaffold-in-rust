@@ -1,0 +1,23 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { {{ModuleName}}RoutingModule } from './{{module-name}}-routing.module';
+import { {{ModuleName}}PageComponent } from './{{module-name}}-page/{{module-name}}-page.component';
+import { {{ModuleName}}FilterComponent } from './{{module-name}}-page/{{module-name}}-filter/{{module-name}}-filter.component';
+import { {{ModuleName}}ListComponent } from './{{module-name}}-page/{{module-name}}-list/{{module-name}}-list.component';
+import { SharedModule } from '@app/shared/shared.module';
+
+
+@NgModule({
+  declarations: [
+    {{ModuleName}}PageComponent,
+    {{ModuleName}}FilterComponent,
+    {{ModuleName}}ListComponent
+  ],
+  imports: [
+    CommonModule,
+    {{ModuleName}}RoutingModule,
+    SharedModule
+  ],
+})
+export class {{ModuleName}}Module { }

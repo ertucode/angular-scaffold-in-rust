@@ -1,0 +1,15 @@
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CLAIM } from '@app/features/claims';
+import { TableFilterService } from '@app/shared/services/table/table-filter.service';
+import { TableStreamService } from '@app/shared/services/table/table-stream.service';
+
+@Component({
+  selector: '{{module-name}}-page',
+  templateUrl: './{{module-name}}-page.component.html',
+  styleUrls: ['./{{module-name}}-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [TableStreamService, TableFilterService]
+})
+export class BulkTransferPageComponent {
+  loadClaim = CLAIM.undefined
+}

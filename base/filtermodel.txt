@@ -1,0 +1,5 @@
+import { EnumType } from "src/app/shared/modules/enum/enums";
+
+export interface {{ModuleName}}ListFilterModel {
+    {{Models}}
+}

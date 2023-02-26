@@ -1,0 +1,16 @@
+<ng-container *localize="let t" >
+    <form [formGroup]="form" (ngSubmit)="onFormSubmit()" class="table-form__main-container">
+        <div class="flex flex-column">
+            <div class="table-form-field important-fields-container">
+                {{FormFields}}
+                <div class="form-field__form-buttons-container in-form">
+                    <button pButton type="reset" (click)="onFilterFormClear()" icon="pi pi-trash"
+                        class="p-button-raised p-button-outlined p-button-danger"></button>
+                    <button pButton type="submit" class="p-button-raised p-button-outlined"
+                        icon="pi pi-search" [label]="t('search')"
+                        [loading]="(ts.loading$ | async)!"></button>
+                </div>
+            </div>
+        </div>
+    </form>
+</ng-container>

@@ -1,0 +1,20 @@
+import { Injectable } from '@angular/core';
+import { DataService } from '@app/core/data/data.service';
+import { emptyListResponsePayload, ServerListResponsePayload } from '@app/core/data/serverResponse';
+import { MakeOptionalNested } from '@app/core/util-types/typescript-util';
+import { CLAIM, ClaimsService } from '@app/features/claims';
+import { {{ModuleName}}ListFilterModel } from './models/filter.model';
+import { {{ModuleName}}ListModel } from './models/list.model';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class {{ModuleName}}Service {
+
+  constructor(private ds: DataService, private cls: ClaimsService) { }
+
+  getList = (model: MakeOptionalNested<{{ModuleName}}ListFilterModel>) => {
+    return this.cls.performClaimedAction(CLAIM.BULK.LOAD, this.ds.searchList<{{ModuleName}}ListModel, {{ModuleName}}ListFilterModel>(undefined, model), emptyListResponsePayload)
+  }
+
+}
